@@ -1,30 +1,34 @@
-<?php include "header.php"; ?>
+<?php 
+include "header.php"; 
 
-<form method="post">
-<input type="text" name="user" placeholder="Nome de usuário" required > <br>
-<input type="password" name="password" placeholder="Senha" required > <br>
-<input type="password" name="r-password" placeholder="Confirme a senha" required > <br>
-<input type="submit" value="Registrar-se" />
-</form> 
-
-    <?php 
     include "connect.php";
-    if(isset($_POST['user'], $_POST['password'])){
-    $a=$_POST['user'];
-    $b=md5(md5($_POST['password']."#?*&#"));
-    $c=md5(md5($_POST['r-password']."#?*&#"));;
-        if($b==$c){
-        $register="INSERT INTO tb_users VALUES (NULL, '$a', '$b', 0, 0, 0, 0, 0, 0, 0)";
-        $result=mysqli_query($connect, $register);
-            if ($result) {
-                header('location:login.php');
+    if(isset($_POST['username'],$_POST['name'],$_POST['password'])){
+    $a=$_POST['username'];
+    $b=$_POST['name'];
+    $c=md5(md5($_POST['password']."#?*&#"));
+    $d=md5(md5($_POST['r-password']."#?*&#"));
+    $avatar="default.png";
+        if(mysqli_num_rows(mysqli_query($connect, "SELECT * FROM tb_users WHERE username='$a'"))>0){
+            echo "Esse nome de usuário já existe";
         }
-    }
-    else {
-        echo "As senhas não coincidem";
+        else {
+            if($c==$d){
+            $register="INSERT INTO tb_users VALUES (NULL,'$a', '$b', '$c', '$avatar','','','','', NOW(),'activated')";
+            $result=mysqli_query($connect, $register);
+                if ($result) {
+                header("Location: login.php?status=cadastrado");
+                }
+                }
+                else {
+                    echo "Senhas não coincidem";
+                    }
         }
     }
 
     mysqli_close($connect);
     ?>
-<?php include "footer.php"; ?>
+
+</p>
+
+
+</div>
