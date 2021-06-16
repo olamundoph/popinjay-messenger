@@ -1,5 +1,5 @@
 body {
-    background: #cdf0f0;    
+    background: #d9f5f5;    
 }
 main {
     width: 1300px;
@@ -22,6 +22,28 @@ section {
     width: 1000px;
     height: 500px;
     background: #cdf0f0;
+}
+#chat-history {
+    width: 1000px;
+    height: 400px;
+    background: #f1f5f5;
+}
+#chat-post {
+    width: 1000px;
+    height: 80px;
+    background: #f1f5f5;
+    display: flex;
+}
+#chat-post-btn {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+}
+#chatbox {
+    width: 900px;
+    height: 70px;
+    border-radius: 10px;
+    resize: none;
 }
 footer {
     width: 1300px;
